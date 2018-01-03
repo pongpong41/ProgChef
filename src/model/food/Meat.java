@@ -25,7 +25,7 @@ public class Meat extends Ingredient implements Chopable {
 				gc.setFill(Color.LIGHTGRAY);
 				gc.fillRect(x-20, y-40, 30, 5);
 				gc.setFill(Color.GREEN);
-				gc.fillRect(x-20, y-40, (double) (timeToChopped/9), 5);
+				gc.fillRect(x-20, y-40, (double) (timeToChopped/7*3), 5);
 			}
 		} else if (state == canRipen) {
 			gc.fillRect(x-20, y-30, 30, 20);

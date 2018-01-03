@@ -4,26 +4,33 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Plate implements IRenderableFood {
-	public static final int meat = 0;
+	public static final int Meat = 0;
 
-	private Boolean[] IngredientOnPlate;
+	private Food foodOnPlate;
 	
 	public Plate() {
-		IngredientOnPlate = new Boolean[1];
-		IngredientOnPlate[meat] = false;
+		foodOnPlate = new Food(false,false);
 	}
 	
 	public boolean canSettleOnPlate(IRenderableFood food) {
 		if (!(food instanceof Ingredient)) return false;
 		Ingredient ingredient = (Ingredient) food;
 		if (ingredient.getState() != Ingredient.cooked) return false;
-		if (ingredient instanceof Meat && IngredientOnPlate[meat] == false) return true;
+		if (ingredient instanceof Meat && foodOnPlate.getIngredient(Meat) == false) return true;
 		return false;
 	}
 	
 	public IRenderableFood settleMeatOnPlate() {
-		IngredientOnPlate[meat] = true;
+		foodOnPlate.setIngredient(Meat,true);
 		return this;
+	}
+	
+	public boolean plateHaveFood() {
+		return !foodOnPlate.IsfoodEmpty();
+	}
+	
+	public Food getFoodOnPlate() {
+		return foodOnPlate;
 	}
 	
 	@Override
@@ -38,7 +45,7 @@ public class Plate implements IRenderableFood {
 		gc.setFill(Color.WHITE);
 		gc.fillRect(x-24, y-34, 38, 28);
 		
-		if (IngredientOnPlate[meat] == true) {
+		if (foodOnPlate.getIngredient(Meat) == true) {
 			gc.setFill(Color.CHOCOLATE);
 			gc.fillRect(x-20, y-30, 30, 20);
 			gc.strokeRect(x-20, y-30, 6, 20);

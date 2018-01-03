@@ -4,16 +4,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
+import model.food.Food;
+
 public class Menu {
-	private static final Set<Boolean[]> ALLMENU = new HashSet<>();
-	private static List<Boolean[]> CurrentMenu = new ArrayList<>();
+	private static final Food[] ALLMENU = new Food[1];
 	
 	static {
-		ALLMENU.add(new Boolean[]{true});
+		ALLMENU[0] = new Food(true,false);
 		// add menu
 	}
 	
-	//static 
+	static Food generateMenu() {
+		Random r = new Random();
+		//return ALLMENU[r.nextInt(ALLMENU.length)];
+		Food food = ALLMENU[r.nextInt(ALLMENU.length)];
+		//System.out.println(food.printFood());
+		return food;
+	}
 }

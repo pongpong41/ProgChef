@@ -39,6 +39,7 @@ public class GameLogic {
 		addNewObject(new Chest(105,280,70,70));
 		addNewObject(new Chopper(105,420,70,70));
 		addNewObject(new Shelf(245,140,70,70,new Plate()));
+		addNewObject(new Cashier(385,140,70,70,this.model));
 	}
 	
 	protected void addNewObject(Entity entity) {

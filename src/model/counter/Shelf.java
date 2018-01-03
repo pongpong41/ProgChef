@@ -45,13 +45,6 @@ public class Shelf extends Counter {
 	}
 	
 	@Override
-	public IRenderableFood callIngredient(Player player) {
-		IRenderableFood c = foodOnCounter;
-		foodOnCounter = null;
-		return c;
-	}
-	
-	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		gc.setFill(Color.LIGHTGRAY);

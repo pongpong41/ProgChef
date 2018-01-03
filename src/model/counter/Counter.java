@@ -8,7 +8,6 @@ public abstract class Counter extends Entity {
 	protected IRenderableFood foodOnCounter;
 	
 	public abstract boolean canSettle(IRenderableFood foodOnPlayer);
-	public abstract IRenderableFood callIngredient(Player player);
 	
 	public Counter(double x, double y, int w, int h) {
 		this.x = x;
@@ -16,6 +15,12 @@ public abstract class Counter extends Entity {
 		width = w;
 		height = h;
 		foodOnCounter = null;
+	}
+	
+	public IRenderableFood callIngredient(Player player) {
+		IRenderableFood c = foodOnCounter;
+		foodOnCounter = null;
+		return c;
 	}
 	
 	public boolean counterHaveFood() {

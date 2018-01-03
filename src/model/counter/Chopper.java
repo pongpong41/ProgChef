@@ -9,7 +9,7 @@ import model.player.Player;
 
 public class Chopper extends Counter {
 
-	public static final int timeForCompleteChopped = 270;
+	public static final int timeForCompleteChopped = 70;
 
 	public Chopper(double x, double y, int w, int h) {
 		super(x, y, w, h);
@@ -23,7 +23,7 @@ public class Chopper extends Counter {
 		Chopable food = (Chopable) ingredient;
 		food.addTimeToChopped();
 		System.out.println("time of Chopped " + food.getTimeToChopped());
-		if (food.getTimeToChopped() >= 270) {
+		if (food.getTimeToChopped() >= timeForCompleteChopped) {
 			food.setStateWhenCompleteChop();
 			System.out.println("Ingredient is complete chopped");
 		}
@@ -37,13 +37,6 @@ public class Chopper extends Counter {
 				return true;
 		}
 		return false;
-	}
-	
-	@Override
-	public IRenderableFood callIngredient(Player player) {
-		IRenderableFood c = foodOnCounter;
-		foodOnCounter = null;
-		return c;
 	}
 	
 	@Override
