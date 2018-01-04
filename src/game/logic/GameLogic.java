@@ -33,19 +33,26 @@ public class GameLogic {
 		model.getRenderableHolder().add(field);
 		player = new Player(300,300,this);
 		addNewObject(player);
-		/*shelf = new Shelf(105,140,70,70);
-		addNewObject(shelf);*/
-		addNewObject(new Shelf(105,140,70,70,null));
-		addNewObject(new Chest(105,280,70,70));
-		addNewObject(new Chopper(105,420,70,70));
-		addNewObject(new Shelf(245,140,70,70,new Plate()));
-		addNewObject(new Cashier(385,140,70,70,this.model));
+		addCounter(field);
 	}
 	
 	protected void addNewObject(Entity entity) {
 		gameObjectContainer.add(entity);
 		model.getRenderableHolder().add(entity);
 		if (entity!=null && entity instanceof Counter) 	counterInGame.add((Counter) entity);
+	}
+	
+	private void addCounter(Field field) {
+		int size = 70;
+		for (int i = 0; i < field.getRow(); i++) {
+			for (int j = 0; j < field.getCol(); j++) {
+				if (field.getField()[i][j] == 1) addNewObject(new Shelf(j*size+size/2, (i+1)*size, 70,70,null));
+				else if (field.getField()[i][j] == 2) addNewObject(new Chest(j*size+size/2, (i+1)*size, 70,70));
+				else if (field.getField()[i][j] == 3) addNewObject(new Chopper(j*size+size/2, (i+1)*size, 70,70));
+				else if (field.getField()[i][j] == 4) addNewObject(new Cashier(j*size+size/2, (i+1)*size, 70,70,model));
+				else if (field.getField()[i][j] == 9) addNewObject(new Shelf(j*size+size/2, (i+1)*size, 70,70,new Plate()));
+			}
+		}
 	}
 	
 	public void startGame() {

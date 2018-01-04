@@ -76,7 +76,20 @@ public class Player extends Entity {
 			frontY = scope;
 		for (Counter c : logic.counterInGame) {
 			if (frontHaveObject(c.getX(), c.getY(), c.getWidth(), c.getHeight(), frontX, frontY)) {
-				return c;
+				double x1, x2, y1, y2;
+				if (direction==LEFT || direction==RIGHT) {
+					y1 = y - height;
+					y2 = c.getY() - c.getHeight();
+					if ((y1>=y2 && y2+c.getHeight()-y1 >= height/2) ||
+							(y1<y2 && y1+height-y2 >= height/2))
+						return c;
+				} else if (direction==UP || direction==DOWN) {
+					x1 = x - width / 2;
+					x2 = c.getX() - c.getWidth() / 2;
+					if ((x1>=x2 && x2+c.getWidth()-x1 >= width/2) ||
+							(x1<x2 && x1+width-x2 >= width/2)) 
+						return c;
+				}
 			}
 		}
 		return null;
