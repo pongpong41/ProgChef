@@ -3,12 +3,14 @@ package model.food;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Meat extends Ingredient implements Chopable {
+public class Meat extends Ingredient implements Chopable, Ripenable {
 	private int timeToChopped;
+	private double timeToRipened;
 	
 	public Meat() {
 		state = canChop;
 		timeToChopped = 0;
+		timeToRipened = 0;
 	}
 
 	public int getZ() {
@@ -34,6 +36,12 @@ public class Meat extends Ingredient implements Chopable {
 			gc.strokeRect(x-8, y-30, 6, 20);
 			gc.strokeRect(x-2, y-30, 6, 20);
 			gc.strokeRect(x+4, y-30, 6, 20);
+			if (timeToRipened >= 1) {
+				gc.setFill(Color.LIGHTGRAY);
+				gc.fillRect(x-20, y-40, 30, 5);
+				gc.setFill(Color.RED);
+				gc.fillRect(x-20, y-40, (double) (timeToRipened/36*3), 5);
+			}
 		} else if (state == cooked) { 
 			gc.setFill(Color.CHOCOLATE);
 			gc.fillRect(x-20, y-30, 30, 20);
@@ -46,7 +54,11 @@ public class Meat extends Ingredient implements Chopable {
 	}
 	
 	public void setStateWhenCompleteChop() {
-		//this.state = canRipen;
+		this.state = canRipen;
+		//this.state = cooked;
+	}
+	
+	public void setStateWhenCompleteRipen() {
 		this.state = cooked;
 	}
 	
@@ -60,4 +72,16 @@ public class Meat extends Ingredient implements Chopable {
 		// TODO Auto-generated method stub
 		timeToChopped++;
 	}
+
+	@Override
+	public void addTimeToRipened() {
+		// TODO Auto-generated method stub
+		timeToRipened++;
+	}
+
+	@Override
+	public double getTimeToRippened() {
+		return timeToRipened;
+	}
+
 }

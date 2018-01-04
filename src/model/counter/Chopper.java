@@ -9,8 +9,6 @@ import model.player.Player;
 
 public class Chopper extends Counter {
 
-	public static final int timeForCompleteChopped = 70;
-
 	public Chopper(double x, double y, int w, int h) {
 		super(x, y, w, h);
 		// TODO Auto-generated constructor stub
@@ -23,7 +21,7 @@ public class Chopper extends Counter {
 		Chopable food = (Chopable) ingredient;
 		food.addTimeToChopped();
 		System.out.println("time of Chopped " + food.getTimeToChopped());
-		if (food.getTimeToChopped() >= timeForCompleteChopped) {
+		if (food.getTimeToChopped() >= Chopable.TIMEFORCOMPLETECHOPPED) {
 			food.setStateWhenCompleteChop();
 			System.out.println("Ingredient is complete chopped");
 		}

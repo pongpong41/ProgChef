@@ -21,6 +21,7 @@ public class GameScreen extends Canvas{
 	private static final Font TEXT_FONT = new Font("Monospace", 80);
 	private static final Font SCORE_TIME_FONT = new Font("Monospace", 30);
 	
+	private GraphicsContext gc = this.getGraphicsContext2D();
 	private GameModel model;
 	private Thread gameAnimation;
 	private boolean isAnimationRunning;
@@ -52,6 +53,9 @@ public class GameScreen extends Canvas{
 				lastLoopStartTime += LOOP_TIME;
 
 				updateAnimation(now);
+				
+				System.out.println("AnimationLoop");
+				//Thread.yield();
 			}
 
 			try {
@@ -72,19 +76,19 @@ public class GameScreen extends Canvas{
 	}
 	
 	public void updateAnimation(long now) {
-		GraphicsContext gc = this.getGraphicsContext2D();
 		
 		for (IRenderable entity : model.getEntities()) {
 			entity.draw(gc);
 		
-		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
+		/*FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
 		gc.setFill(Color.BLACK);
 		gc.setFont(SCORE_TIME_FONT);
 		gc.fillText("Time: " + model.getTimeSecond(),
 				getWidth() - fontLoader.computeStringWidth("Time: " + model.getTimeSecond(), SCORE_TIME_FONT) - 10,
 				fontLoader.getFontMetrics(SCORE_TIME_FONT).getLineHeight() + 10);
-		gc.fillText("Score: " + model.getScore(), 10, fontLoader.getFontMetrics(SCORE_TIME_FONT).getLineHeight() + 10);
+		gc.fillText("Score: " + model.getScore(), 10, fontLoader.getFontMetrics(SCORE_TIME_FONT).getLineHeight() + 10);*/
 		
 		}
 	}
+	
 }
