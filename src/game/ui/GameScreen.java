@@ -79,16 +79,11 @@ public class GameScreen extends Canvas{
 		
 		for (IRenderable entity : model.getEntities()) {
 			entity.draw(gc);
-		
-		/*FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
+		}
 		gc.setFill(Color.BLACK);
 		gc.setFont(SCORE_TIME_FONT);
-		gc.fillText("Time: " + model.getTimeSecond(),
-				getWidth() - fontLoader.computeStringWidth("Time: " + model.getTimeSecond(), SCORE_TIME_FONT) - 10,
-				fontLoader.getFontMetrics(SCORE_TIME_FONT).getLineHeight() + 10);
-		gc.fillText("Score: " + model.getScore(), 10, fontLoader.getFontMetrics(SCORE_TIME_FONT).getLineHeight() + 10);*/
-		
-		}
+		gc.fillText("Time: " + model.getTimeSecond(), 15, 50);
+		gc.fillText("Score: " + model.getScore(), 750, 50);		
 	}
 	
 }
