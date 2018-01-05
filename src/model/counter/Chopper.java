@@ -16,7 +16,7 @@ public class Chopper extends Counter {
 	
 	public void chopping() {
 		Ingredient ingredient = (Ingredient) foodOnCounter;
-		if (ingredient.getState() != model.food.Ingredient.canChop) return;
+		if (ingredient.getState() != model.food.Ingredient.CAN_CHOP) return;
 		
 		Chopable food = (Chopable) ingredient;
 		food.addTimeToChopped();
@@ -31,7 +31,7 @@ public class Chopper extends Counter {
 	public boolean canSettle(IRenderableFood foodOnPlayer) {
 		if (foodOnCounter == null && foodOnPlayer instanceof Chopable && foodOnPlayer instanceof Ingredient) {
 			Ingredient ingredient = (Ingredient) foodOnPlayer;
-			if (ingredient.getState() == model.food.Ingredient.canChop) 
+			if (ingredient.getState() == model.food.Ingredient.CAN_CHOP) 
 				return true;
 		}
 		return false;

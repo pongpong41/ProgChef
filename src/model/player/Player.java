@@ -21,6 +21,13 @@ public class Player extends Entity {
 	private static final int DOWN = 4;
 
 	private static final int speed = 4;
+	
+	private KeyCode keyRight;
+	private KeyCode keyLeft;
+	private KeyCode keyUp;
+	private KeyCode keyDown;
+	private KeyCode keyHold;
+	private KeyCode keyChop;
 
 	private int scope;
 	private GameLogic logic;
@@ -28,18 +35,25 @@ public class Player extends Entity {
 	protected IRenderableFood foodOnPlayer;
 	// protected List<Shelf> counterInScope;
 
-	public Player(double x, double y, GameLogic logic) {
+	public Player(double x, double y, GameLogic logic, KeyCode keyRight, KeyCode keyLeft, KeyCode keyUp, KeyCode keyDown, KeyCode keyHold, KeyCode keyChop) {
 		// counterInScope = new ArrayList<>();
 		this.x = x;
 		this.y = y;
+		
+		this.logic = logic;
+		
+		this.keyRight = keyRight;
+		this.keyLeft = keyLeft;
+		this.keyUp = keyUp;
+		this.keyDown = keyDown;
+		this.keyHold = keyHold;
+		this.keyChop = keyChop;
 		// -----------------------------------------
 		// find from player picture
 		this.width = 40;
 		this.height = 40;
 		// -----------------------------------------
 		this.scope = width * 1 / 3;
-
-		this.logic = logic;
 		this.foodOnPlayer = null;
 		direction = DOWN;
 	}
@@ -172,25 +186,25 @@ public class Player extends Entity {
 	public void update() {
 		Counter counter = checkFrontObject();
 
-		if (InputUtility.getKeyPressed(KeyCode.RIGHT)) {
+		if (InputUtility.getKeyPressed(keyRight)) {
 			right();
 		}
-		if (InputUtility.getKeyPressed(KeyCode.LEFT)) {
+		if (InputUtility.getKeyPressed(keyLeft)) {
 			left();
 		}
-		if (InputUtility.getKeyPressed(KeyCode.UP)) {
+		if (InputUtility.getKeyPressed(keyUp)) {
 			up();
 		}
-		if (InputUtility.getKeyPressed(KeyCode.DOWN)) {
+		if (InputUtility.getKeyPressed(keyDown)) {
 			down();
 		}
-		if (InputUtility.getKeyPressed(KeyCode.S)) {
+		if (InputUtility.getKeyPressed(keyChop)) {
 			chopping(counter);
 		}
 		while (InputUtility.isPollAvailable()) {
 			KeyCode key = InputUtility.pollKey();
-
-			if (key == KeyCode.A) {
+			System.out.println(keyHold);
+			if (key == keyHold) {
 				if (foodOnPlayer == null) {
 					callIngredient(counter);
 				} else {
@@ -222,9 +236,14 @@ public class Player extends Entity {
 		if (foodOnPlayer != null) {
 			foodOnPlayer.draw(gc, x, y);
 		}
+		
+		//System.out.println("Draw Player at location " + x + ", " + y);
 	}
 
 	public int getZ() {
 		return 9;
 	}
+	
+	public double getX() {return x;}
+	public double getY() {return y;}
 }

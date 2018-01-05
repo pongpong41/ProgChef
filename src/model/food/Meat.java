@@ -8,7 +8,7 @@ public class Meat extends Ingredient implements Chopable, Ripenable {
 	private double timeToRipened;
 	
 	public Meat() {
-		state = canChop;
+		state = CAN_CHOP;
 		timeToChopped = 0;
 		timeToRipened = 0;
 	}
@@ -21,7 +21,7 @@ public class Meat extends Ingredient implements Chopable, Ripenable {
 	public void draw(GraphicsContext gc, double x, double y) {
 		// TODO Auto-generated method stub
 		gc.setFill(Color.BROWN);
-		if (state == canChop) {
+		if (state == CAN_CHOP) {
 			gc.fillRect(x-20, y-30, 30, 20);
 			if (timeToChopped >= 1) {
 				gc.setFill(Color.LIGHTGRAY);
@@ -29,7 +29,7 @@ public class Meat extends Ingredient implements Chopable, Ripenable {
 				gc.setFill(Color.GREEN);
 				gc.fillRect(x-20, y-40, (double) (timeToChopped/7*3), 5);
 			}
-		} else if (state == canRipen) {
+		} else if (state == CAN_RIPEN) {
 			gc.fillRect(x-20, y-30, 30, 20);
 			gc.strokeRect(x-20, y-30, 6, 20);
 			gc.strokeRect(x-14, y-30, 6, 20);
@@ -40,9 +40,9 @@ public class Meat extends Ingredient implements Chopable, Ripenable {
 				gc.setFill(Color.LIGHTGRAY);
 				gc.fillRect(x-20, y-40, 30, 5);
 				gc.setFill(Color.RED);
-				gc.fillRect(x-20, y-40, (double) (timeToRipened/36*3), 5);
+				gc.fillRect(x-20, y-40, (double) (timeToRipened/72*3), 5);
 			}
-		} else if (state == cooked) { 
+		} else if (state == COOKED) { 
 			gc.setFill(Color.CHOCOLATE);
 			gc.fillRect(x-20, y-30, 30, 20);
 			gc.strokeRect(x-20, y-30, 6, 20);
@@ -54,12 +54,12 @@ public class Meat extends Ingredient implements Chopable, Ripenable {
 	}
 	
 	public void setStateWhenCompleteChop() {
-		this.state = canRipen;
+		this.state = CAN_RIPEN;
 		//this.state = cooked;
 	}
 	
 	public void setStateWhenCompleteRipen() {
-		this.state = cooked;
+		this.state = COOKED;
 	}
 	
 	@Override

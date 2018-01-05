@@ -42,7 +42,7 @@ public class Stove extends Counter {
 
 	public void ripening() {
 		Ingredient ingredient = (Ingredient) foodOnCounter;
-		if (ingredient.getState() != model.food.Ingredient.canRipen)
+		if (ingredient.getState() != model.food.Ingredient.CAN_RIPEN)
 			return;
 		new Thread(ripen).start();
 	}
@@ -57,7 +57,7 @@ public class Stove extends Counter {
 	public boolean canSettle(IRenderableFood foodOnPlayer) {
 		if (foodOnCounter == null && foodOnPlayer instanceof Ripenable && foodOnPlayer instanceof Ingredient) {
 			Ingredient ingredient = (Ingredient) foodOnPlayer;
-			if (ingredient.getState() == model.food.Ingredient.canRipen)
+			if (ingredient.getState() == model.food.Ingredient.CAN_RIPEN)
 				return true;
 		}
 		return false;

@@ -13,7 +13,7 @@ public class Menu {
 	private static final Food[] ALLMENU = new Food[1];
 	
 	static {
-		ALLMENU[0] = new Food(true,false);
+		ALLMENU[0] = new Food(true,true,true);
 		// add menu
 	}
 	

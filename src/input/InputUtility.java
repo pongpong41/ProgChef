@@ -15,6 +15,8 @@ public class InputUtility {
 	static {
 		// KeyCode D -> key for chopping
 		POLLABLE_KEYS.add(KeyCode.A);
+		POLLABLE_KEYS.add(KeyCode.DIGIT2);
+		POLLABLE_KEYS.add(KeyCode.E);
 		// for develop
 		POLLABLE_KEYS.add(KeyCode.F);
 		POLLABLE_KEYS.add(KeyCode.P);
@@ -34,6 +36,7 @@ public class InputUtility {
 			activeKeys.remove(keycode);
 		}
 		System.out.println(activeKeys);
+		//System.out.println(triggerKeys);
 	}
 	
 	public static boolean isPollAvailable() {

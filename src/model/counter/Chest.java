@@ -7,9 +7,11 @@ import model.player.Player;
 
 public class Chest extends Counter {
 
-	public Chest(double x, double y, int w, int h) {
+	private int ingredient;
+
+	public Chest(double x, double y, int w, int h, int ingredient) {
 		super(x, y, w, h);
-		// TODO Auto-generated constructor stub
+		this.ingredient = ingredient;
 	}
 	
 	@Override
@@ -29,8 +31,11 @@ public class Chest extends Counter {
 			IRenderableFood c = foodOnCounter;
 			foodOnCounter = null;
 			return c; 
+		} else {
+			if (ingredient == Food.MEAT) return new Meat();
+			else if (ingredient == Food.VEGETABLE)return new Vegetable();
+			else return new Bread();
 		}
-		return new Meat();
 	}
 	
 	public void draw(GraphicsContext gc) {

@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import model.GameModel;
 import model.IRenderable;
+import model.player.Player;
 import window.SceneManager;
 
 public class GameScreen extends Canvas{
@@ -54,8 +55,8 @@ public class GameScreen extends Canvas{
 
 				updateAnimation(now);
 				
-				System.out.println("AnimationLoop");
-				//Thread.yield();
+				//System.out.println("AnimationLoop");
+				Thread.yield();
 			}
 
 			try {
@@ -79,6 +80,10 @@ public class GameScreen extends Canvas{
 		
 		for (IRenderable entity : model.getEntities()) {
 			entity.draw(gc);
+			if (entity instanceof Player) {
+				Player player = (Player) entity;
+				//System.out.println("Draw Player at location " + player.getX() + ", " + player.getY());
+			}
 		}
 		gc.setFill(Color.BLACK);
 		gc.setFont(SCORE_TIME_FONT);

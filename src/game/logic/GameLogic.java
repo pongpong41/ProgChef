@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import game.GameMain;
+import javafx.scene.input.KeyCode;
 import model.field.Field;
 import model.food.Plate;
 import model.player.Player;
@@ -20,7 +21,8 @@ public class GameLogic {
 	
 	private List<Entity> gameObjectContainer;
 	public List<Counter> counterInGame;
-	private Player player;
+	private Player player1;
+	//private Player player2;
 	
 	public GameLogic(GameModel model) {
 		this.gameObjectContainer = new ArrayList<Entity>();
@@ -31,14 +33,10 @@ public class GameLogic {
 		
 		Field field = new Field();
 		model.getRenderableHolder().add(field);
-		player = new Player(300,300,this);
-		addNewObject(player);
-		
-		/*addNewObject(new Shelf(105,140,70,70,null));
-		addNewObject(new Chest(105,280,70,70));
-		addNewObject(new Chopper(105,420,70,70));
-		addNewObject(new Shelf(245,140,70,70,new Plate()));
-		addNewObject(new Cashier(385,140,70,70,this.model));*/
+		player1 = new Player(600,420,this,KeyCode.RIGHT,KeyCode.LEFT,KeyCode.UP,KeyCode.DOWN,KeyCode.A,KeyCode.S);
+		addNewObject(player1);
+		//player2 = new Player(400,420,this,KeyCode.D,KeyCode.A,KeyCode.W,KeyCode.S,KeyCode.E,KeyCode.R);
+		//addNewObject(player2);
 		addCounter(field);
 	}
 	
@@ -53,7 +51,9 @@ public class GameLogic {
 		for (int i = 0; i < field.getRow(); i++) {
 			for (int j = 0; j < field.getCol(); j++) {
 				if (field.getField()[i][j] == 1) addNewObject(new Shelf(j*size+size/2, (i+1)*size, 70,70,null));
-				else if (field.getField()[i][j] == 2) addNewObject(new Chest(j*size+size/2, (i+1)*size, 70,70));
+				else if (field.getField()[i][j] == 20) addNewObject(new Chest(j*size+size/2, (i+1)*size, 70,70,0));
+				else if (field.getField()[i][j] == 21) addNewObject(new Chest(j*size+size/2, (i+1)*size, 70,70,1));
+				else if (field.getField()[i][j] == 22) addNewObject(new Chest(j*size+size/2, (i+1)*size, 70,70,2));
 				else if (field.getField()[i][j] == 3) addNewObject(new Chopper(j*size+size/2, (i+1)*size, 70,70));
 				else if (field.getField()[i][j] == 4) addNewObject(new Cashier(j*size+size/2, (i+1)*size, 70,70,model));
 				else if (field.getField()[i][j] == 5) addNewObject(new Stove(j*size+size/2, (i+1)*size, 70,70));
@@ -81,7 +81,7 @@ public class GameLogic {
 					lastLoopStartTime += LOOP_TIME;
 
 					logicUpdate(elapsedTime);
-					System.out.println("Game Loop Thred");
+					//System.out.println("Game Loop Thred");
 					Thread.yield();
 				}
 
@@ -96,7 +96,9 @@ public class GameLogic {
 	};
 	
 	public void logicUpdate(long elapsedTime) {
-		player.update();
+		//player2.update();
+		player1.update();
+		//player2.update();
 		model.decreaseRemainingTime(elapsedTime);
 		if (model.getTimeNanosecond() <= 0) {
 			System.out.println("Game Over!");
