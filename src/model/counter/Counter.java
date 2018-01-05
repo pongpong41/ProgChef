@@ -28,8 +28,9 @@ public abstract class Counter extends Entity {
 		return false;
 	};
 	
-	public void setFoodOnCounter(IRenderableFood food) {
+	public IRenderableFood setFoodOnCounter(IRenderableFood food) {
 		foodOnCounter = food;
+		return null;
 	}
 	
 	public int getWidth()	{return width;}

@@ -112,8 +112,7 @@ public class Player extends Entity {
 	private void settleFood(Counter counter) {
 		if (counter == null || !counter.canSettle(foodOnPlayer))
 			return;
-		counter.setFoodOnCounter(foodOnPlayer);
-		foodOnPlayer = null;
+		foodOnPlayer = counter.setFoodOnCounter(foodOnPlayer);;
 	}
 
 	/*private void callIngredient(Counter counter) {

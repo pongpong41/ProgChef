@@ -48,6 +48,12 @@ public class Plate implements IRenderableFood {
 		return foodOnPlate;
 	}
 	
+	public void dumpFood() {
+		foodOnPlate.setIngredient(Food.MEAT,false);
+		foodOnPlate.setIngredient(Food.VEGETABLE,false);
+		foodOnPlate.setIngredient(Food.BREAD,false);
+	}
+	
 	@Override
 	public int getZ() {
 		// TODO Auto-generated method stub

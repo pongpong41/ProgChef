@@ -48,9 +48,10 @@ public class Stove extends Counter {
 	}
 
 	@Override
-	public void setFoodOnCounter(IRenderableFood food) {
+	public IRenderableFood setFoodOnCounter(IRenderableFood food) {
 		foodOnCounter = food;
 		ripening();
+		return null;
 	}
 
 	@Override

@@ -26,10 +26,11 @@ public class Cashier extends Counter {
 	}
 	
 	@Override
-	public void setFoodOnCounter(IRenderableFood food) {
+	public IRenderableFood setFoodOnCounter(IRenderableFood food) {
 		Plate plate = (Plate) food;
 		model.serve(plate.getFoodOnPlate());
-		foodOnCounter = new Plate();
+		plate.dumpFood();
+		return plate;
 	}
 
 	@Override

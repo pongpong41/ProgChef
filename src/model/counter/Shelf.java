@@ -32,7 +32,7 @@ public class Shelf extends Counter {
 	}
 	
 	@Override
-	public void setFoodOnCounter(IRenderableFood foodOnPlayer) {
+	public IRenderableFood setFoodOnCounter(IRenderableFood foodOnPlayer) {
 		/*if (foodOnCounter == null) {
 			foodOnCounter = foodOnPlayer;
 		} else if (foodOnCounter instanceof Plate) {
@@ -60,6 +60,7 @@ public class Shelf extends Counter {
 				else if (foodOnPlayer instanceof Bread) 		plate.settleBreadOnPlate();
 			}
 		}
+		return null;
 	}
 	
 	@Override
